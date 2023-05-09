@@ -1,0 +1,151 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <style>
+        body {
+            background-image: url("https://www.shutterstock.com/image-photo/colorful-soft-green-pink-paper-260nw-727671529.jpg");
+            background-size: 100%;
+            background-repeat: no-repeat;
+            width: 100%;
+
+            font-family: Arial, sans-serif;
+        }
+
+        .bookbuddy-logo {
+            font-family: 'Pacifico', cursive;
+            /* use Google font "Pacifico" for the logo */
+            font-size: 48px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 50px;
+            color: green;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        #Login-box {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            margin: 0 auto;
+            max-width: 500px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            font-size: 16px;
+            margin: 10px 0;
+            padding: 12px 20px;
+            width: 100%;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            padding: 12px 20px;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: lightblue;
+        }
+
+        .google-icon {
+            background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg");
+            background-size: cover;
+            height: 30px;
+            width: 30px;
+            display: inline-block;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .google-login {
+            background-color: #0096FF;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            padding: 12px 20px;
+            width: 100%;
+        }
+
+        .google-login:hover {
+            background-color: #c23321;
+        }
+
+        p {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bookbuddy-logo">BOOKBUDDY</div>
+
+    <div id="Login-box">
+        <h1>Login</h1>
+        <form>
+            <input type="text" placeholder="Username" required id="username">
+            <input type="password" placeholder="Password" required id="password">
+            <input type="submit" value="Login" id="sub">
+        </form>
+        <div>
+            <button class="google-login">
+                <span class="google-icon"></span>
+                Login with Google
+            </button>
+        </div>
+        <p>Don't have an account? <a href="http://127.0.0.1:5500/signUpPage.html">Sign up now</a></p>
+    </div>
+    <script>
+
+        let ele = document.querySelector("#sub");
+        ele.addEventListener("click", validlogin);
+
+
+        function validlogin(event) {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+
+            const myArrayString = localStorage.getItem('users');
+            const myArray = JSON.parse(myArrayString);
+
+            if (myArray) {
+                for (let i = 0; i < myArray.length; i++) {
+                    if (myArray[i].name == username && myArray[i].password == password) {
+                        window.open("https://www.google.com/");
+                        return;
+                    }
+                }
+            }
+
+            alert("User not exists");
+
+        }
+    </script>
+</body>
+
+</html>

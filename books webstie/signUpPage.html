@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <style>
+        body {
+            background-image: url("https://www.shutterstock.com/image-photo/colorful-soft-green-pink-paper-260nw-727671529.jpg");
+            background-size: 100%;
+            background-repeat: no-repeat;
+            width: 100%;
+
+            font-family: Arial, sans-serif;
+        }
+
+        .bookbuddy-logo {
+            font-family: 'Pacifico', cursive;
+            /* use Google font "Pacifico" for the logo */
+            font-size: 48px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 50px;
+            color: green;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        #sign-box {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            margin: 0 auto;
+            max-width: 500px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            font-size: 16px;
+            margin: 10px 0;
+            padding: 12px 20px;
+            width: 100%;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            padding: 12px 20px;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: lightblue;
+        }
+
+        .google-icon {
+            /*background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg");*/
+            background-size: cover;
+            height: 30px;
+            width: 30px;
+            display: inline-block;
+            margin-right: -22px;
+
+            vertical-align: middle;
+        }
+
+        .google-login {
+            background-color: #0096FF;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            padding: 12px 20px;
+            width: 100%;
+        }
+
+        .google-login:hover {
+            background-color: #c23321;
+        }
+
+        p {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bookbuddy-logo">BOOKBUDDY</div>
+
+    <div id="sign-box">
+        <h1>SignUp</h1>
+        <form>
+            <input type="email" placeholder="Email" required id="txtBox">
+            <input type="text" placeholder="Username" required id="txtBox1">
+            <input type="password" placeholder="New Password" required id="txtBox2">
+            <input type="password" placeholder="Confirm Password" required id="txtBox3">
+            <input type="submit" value="Sign up" id="submission">
+        </form>
+        <div>
+            <button class="google-login">
+                <span class="google-icon"></span>
+                Cancel
+            </button>
+        </div>
+        <p>Already SignUp? <a href="http://127.0.0.1:5500/LOGIN(withLocalstorage).html">Login now</a></p>
+    </div>
+
+
+    <script>
+
+        /*let sign=document.getElementById("submission")
+        
+        sign.addEventListener("click",saveData);
+
+        function saveData(){
+            let data = returnData();            
+            
+            data.push(txtBox.value);
+            data.push(txtBox1.value);
+            data.push(txtBox2.value);
+            data.push(txtBox3.value);
+
+            localStorage.setItem('saveData',JSON.stringify(data));
+        }
+
+        function returnData(){
+            let data = [];
+           
+            if(localStorage.getItem('saveData')){
+                data = JSON.parse(localStorage.getItem('saveData'));           
+            }
+            else{
+                data = [];
+            }
+            return data;
+        }*/
+        let element = document.getElementById("submission")
+
+        // element.addEventListener("click",saveData);
+        element.addEventListener("click", sign);
+
+        /* function saveData(){
+          let data = returnData();            
+          data.push(txtBox.value);
+          data.push(txtBox1.value);
+          data.push(txtBox2.value);
+          data.push(txtBox3.value);
+
+          localStorage.setItem('saveData',JSON.stringify(data));
+      }*/
+        function sign() {
+
+            //const email = document.getElementById("txtBox");
+            const name = document.getElementById("txtBox1");
+            const email = document.getElementById("txtBox");
+            const password = document.getElementById("txtBox3");
+
+            //alert(name.value,email.value,password.value);
+
+            if (name.value && email.value && password.value) {
+
+
+                const myArrayString = localStorage.getItem('users');
+                const myArray = JSON.parse(myArrayString);
+                
+                let user_data = {
+                    name: name.value,
+                    email: email.value,
+                    password: password.value
+                }
+
+                if (myArray) {
+
+                    for (let i = 0; i < myArray.length; i++) {
+                        if (myArray[i].name == user_data.name && myArray[i].email == user_data.email && myArray[i].password == user_data.password) {
+                            alert("User already existed");
+                            return;
+                        }
+                    }
+
+                } else {
+
+                    //get to localstorage if there is existing user ||or make empty array[]
+                    let clientsArr = myArray || [];
+
+                    //ipush ang new user sa array
+                    clientsArr.push(user_data);
+
+                    //save to localstorage
+                    localStorage.setItem('users', JSON.stringify(clientsArr));
+
+                    alert("User registered successfully");
+
+                    window.open("login.html");
+                }
+
+            } else {
+
+                alert("Something unexpected occured");
+            }
+
+        };
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+   
+<style>
+	
+  body{
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYsvv_vR-tM38VqW108KJ68NuOx1KhhHZ5HKTclU59SWYyJMjmTzPSc5uQsv-5X_YZ2tO_LT_Yu6M&usqp=CAU&ec=48665698');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size:cover;
+  }
+	.loader-container{
+    position: fixed;
+    top:0; left: 0;
+    height:100%;
+    width: 100%;
+    z-index: 10000;
+    /*background:#f7f7f7;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#load{
+	border-radius: 20%;
+	border: none;
+}
+.loader-container.active{
+    display: none;
+}
+
+.loader-container img{
+    height:10rem;
+}
+h1{
+	font-size:100px;
+	color: #00433F;               
+	font-style: italic;
+	margin-left: 50px;
+	text-shadow: 1px 1px;
+	display:none;
+}
+a{
+	text-decoration: none;
+}
+
+
+
+
+
+</style>
+    </head>
+<body>
+<!--<background="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9GLQqZPvntj1CLtlkZuunPPx8j77e3nBr7A&usqp=CAU">-->
+	
+<div class="loader-container">
+    
+    <img src="image\loader-img.gif" alt="" id="load">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="http://127.0.0.1:5500/Final%20test.html"><h1>BookBuddy</h1></a>
+   <!--<a href="http://127.0.0.1:5500/indexcpy.html"><h1>BookBuddy</h1></a>-->
+    
+</div>
+</div>
+<script>
+	
+
+	$(document).ready(function(){
+  $("body").mouseenter(function(){
+    $("h1").fadeIn("fast");
+    
+  });
+});
+	function loader(){
+  document.querySelector('.loader-container').classList.add('active');
+}
+
+
+</script>
+</body>
+</html>
